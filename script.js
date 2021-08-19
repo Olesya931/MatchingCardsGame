@@ -94,7 +94,7 @@ function checkMatch(){
         score.innerHTML = scoreCounter;
         disableCards();
         if (scoreCounter===6){
-          alert('Вы выиграли! Поздравляю');
+          alert('Поздравляю! Вы выиграли');
           clearInterval(intervalId);
         }
     }else{
