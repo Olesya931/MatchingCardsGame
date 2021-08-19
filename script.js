@@ -1,8 +1,73 @@
 const cards = document.querySelectorAll('.card');
-shuffle();
+const startBtn = document.querySelector('.start-btn');
+const time = document.querySelector('.time');
+const score = document.querySelector('.score');
+
 let flippedCard = false;
 let firstCard, secondCard;
 let lockTable = false;
+let newGame = true;
+let scoreCounter = 0;
+
+let intervalId;
+
+startBtn.addEventListener('click',()=>{
+ 
+  if (newGame){
+    startGame();
+  } else{
+    let result = confirm('Хотите начать новую игру?');
+    if (result) {
+      clearInterval(intervalId);
+      scoreCounter = 0;
+      score.innerHTML = scoreCounter;
+      startGame();
+    }
+  }
+
+})
+
+function startGame(){
+    shuffle();
+    cards.forEach(card => card.classList.add('flip'));
+    cards.forEach(card => card.addEventListener('click', flipCard));
+
+    setTimeout(() => {
+      cards.forEach(card => card.classList.remove('flip'));
+    }, 1500);  
+    newGame = false;
+    timeCounter();
+}
+
+function timeCounter(){
+  let sec = 0;
+  let min = 0;
+  let SS;
+  let MM;
+
+    intervalId = setInterval(()=>{
+    sec++;
+    if (sec==60){
+      sec = 0;
+      min++;
+    }
+
+    if (sec<10){
+      SS = '0' + sec;
+    } else{
+      SS = sec;
+    }
+
+    if (min<10){
+      MM = '0' + min;
+    } else{
+      MM = min;
+    }
+
+    time.innerHTML = MM + ":" + SS;
+  },1000)
+
+}
 
 function flipCard() {
     if(lockTable) return;
@@ -22,9 +87,16 @@ function flipCard() {
 }
 
 function checkMatch(){
+
     if(firstCard.dataset.space===secondCard.dataset.space){
         //match
+        scoreCounter++;
+        score.innerHTML = scoreCounter;
         disableCards();
+        if (scoreCounter===6){
+          alert('Вы выиграли! Поздравляю');
+          clearInterval(intervalId);
+        }
     }else{
         //not a match
         unflipCards();
@@ -62,4 +134,3 @@ function resetTable() {
   }
 
   
-cards.forEach(card => card.addEventListener('click', flipCard));

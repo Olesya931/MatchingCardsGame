@@ -7,16 +7,23 @@
 body{
     height: 100vh;
     background-color:#060AB2;
+    color: white;
+    font-size: 20px;
+}
+
+button{
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
 }
 
 .cards-table{
     width: 440px;
     height: 440px;
     margin: auto;
-    margin-top: 100px;
     display: flex;
     flex-wrap: wrap;
-    perspective: 1000px;
+    /* perspective: 1000px; */
 }
 
 .card{
@@ -51,6 +58,26 @@ body{
 
 .front-side{
     transform: rotateY(180deg);
+}
+
+.board{
+    width: 440px;
+    height: 85px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.start-btn{
+    cursor: pointer;
+    border: none;
+    background: transparent;
+}
+
+.start-btn:hover{
+    color:lavender;
 }
 
 

@@ -5,8 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Card game</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
+    <div class="board">
+        <div><i class='bx bx-trophy'></i> Score: <span class="score">0</span> </div>
+        <div><i class='bx bx-time'></i> Time: <span class="time">00:00</span></div>
+        <button class="start-btn"><i class='bx bx-play'></i> Start game</button>
+    </div>
+
     <section class="cards-table">
         <div class="card" data-space="sun">
            <img class = "front-side" src="img/sun.svg" alt="sun">
